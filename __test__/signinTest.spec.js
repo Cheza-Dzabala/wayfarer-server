@@ -2,8 +2,8 @@ import app from '../app';
 
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-// eslint-disable-next-line prefer-destructuring
-const expect = chai.expect;
+
+const { expect } = chai;
 chai.use(chaiHttp);
 
 // Test Sign Up Routes
@@ -69,7 +69,7 @@ describe('Signin Functionality', () => {
         expect(res).to.have.property('status', 404, 'The response does not have a status code');
         expect(res.status).to.be.equal(404, 'The response status code does not equal 404');
         expect(body).to.have.property('status', 'unsuccessful', 'The body does not return status');
-        expect(body).to.have.property('message', 'Invalid Credentials', 'The body does not return a message');
+        expect(body.data).to.have.property('message', 'Invalid Credentials', 'The body does not return a message');
         done();
       });
   });
@@ -82,7 +82,7 @@ describe('Signin Functionality', () => {
         const { body } = res;
         expect(body).to.have.property('status', 'unsuccessful', 'Bad Request status not returned');
         expect(res.status).to.be.equal(400, 'Response status is not equal to 404');
-        expect(body).to.be.have.property('message', '"email" is required');
+        expect(body.data).to.be.have.property('message', '"email" is required');
         done();
       });
   });
@@ -95,7 +95,7 @@ describe('Signin Functionality', () => {
         const { body } = res;
         expect(body).to.have.property('status', 'unsuccessful', 'Bad Request status not returned');
         expect(res.status).to.be.equal(400, 'Response status is not equal to 404');
-        expect(body).to.be.have.property('message', '"password" is required');
+        expect(body.data).to.be.have.property('message', '"password" is required');
         done();
       });
   });
