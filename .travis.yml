@@ -10,4 +10,4 @@ script:
   - npm test
 
 
-after_script:  ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
+after_success: npm run coverage
