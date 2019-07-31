@@ -85,4 +85,17 @@ describe('Trip "PATCH" Routes', () => {
         done();
       });
   });
+
+  it('Should not allow to cancel non existent trips', (done) => {
+    chai.request(app)
+      .patch(`${endpoint}/24/cancel`)
+      .set('token', 'jdllksdjis')
+      .end((err, res) => {
+        const { body, status } = res;
+        expect(status).to.be.equal(404, 'Returning wrong status');
+        expect(body.status).to.be.equal('Resource not found', 'Returning invalid trip status');
+        expect(body.data.message).to.be.equal('Trip does not exist', 'Returning invalid message');
+        done();
+      });
+  });
 });
