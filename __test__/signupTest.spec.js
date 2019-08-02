@@ -2,8 +2,8 @@ import app from '../app';
 
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-// eslint-disable-next-line prefer-destructuring
-const expect = chai.expect;
+
+const { expect } = chai;
 chai.use(chaiHttp);
 
 // Test Sign Up Routes
@@ -89,7 +89,7 @@ describe('Sign Up Feature', () => {
         const { body } = res;
         expect(res.status).to.be.equal(403, 'Incorrect Status Code Being Returned');
         expect(body).to.have.property('status', 'Forbidden', 'Wrong status message in the body is returned');
-        expect(body).to.have.property('message', 'Email already exists on the system');
+        expect(body.data).to.have.property('message', 'Email already exists on the system');
         done();
       });
   });
@@ -102,7 +102,7 @@ describe('Sign Up Feature', () => {
         const { body } = res;
         expect(body).to.have.property('status', 'Bad Request', 'Bad Request status not returned');
         expect(res.status).to.be.equal(400, 'Response status is not equal to 404');
-        expect(body).to.be.have.property('message', '"email" is required');
+        expect(body.data).to.be.have.property('message', '"email" is required');
         done();
       });
   });
@@ -115,7 +115,7 @@ describe('Sign Up Feature', () => {
         const { body } = res;
         expect(body).to.have.property('status', 'Bad Request', 'Bad Request status not returned');
         expect(res.status).to.be.equal(400, 'Response status is not equal to 404');
-        expect(body).to.be.have.property('message', '"password" is required');
+        expect(body.data).to.be.have.property('message', '"password" is required');
         done();
       });
   });
@@ -128,7 +128,7 @@ describe('Sign Up Feature', () => {
         const { body } = res;
         expect(body).to.have.property('status', 'Bad Request', 'Bad Request status not returned');
         expect(res.status).to.be.equal(400, 'Response status is not equal to 404');
-        expect(body).to.be.have.property('message', '"first_name" is required');
+        expect(body.data).to.be.have.property('message', '"first_name" is required');
         done();
       });
   });
@@ -141,7 +141,7 @@ describe('Sign Up Feature', () => {
         const { body } = res;
         expect(body).to.have.property('status', 'Bad Request', 'Bad Request status not returned');
         expect(res.status).to.be.equal(400, 'Response status is not equal to 404');
-        expect(body).to.be.have.property('message', '"last_name" is required');
+        expect(body.data).to.be.have.property('message', '"last_name" is required');
         done();
       });
   });

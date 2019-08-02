@@ -3,7 +3,7 @@ import authValidation from '../validations/authValidations';
 
 const errorResponses = (error, res) => res.status(400).json({
   status: 'unsuccessful',
-  message: error.details[0].message,
+  data: { message: error.details[0].message },
 });
 const signin = (req, res) => {
   const { error } = authValidation.vailidateSignin(req);
@@ -19,7 +19,7 @@ const signin = (req, res) => {
   }
   return res.status(404).json({
     status: 'unsuccessful',
-    message: 'Invalid Credentials',
+    data: { message: 'Invalid Credentials' },
   });
 };
 

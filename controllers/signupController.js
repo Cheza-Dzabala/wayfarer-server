@@ -3,7 +3,7 @@ import authValidations from '../validations/authValidations';
 
 const errorResponses = (error, bodyStatus, res, status) => res.status(status).json({
   status: bodyStatus,
-  message: error,
+  data: { message: error },
 });
 const signup = (req, res) => {
   const doesExist = userModel.findUser(req.email);
@@ -19,7 +19,7 @@ const signup = (req, res) => {
   }
   return res.status(404).json({
     status: 'unsuccessful',
-    message: 'Unable to sign up user',
+    data: { message: 'Unable to sign up user' },
   });
 };
 
