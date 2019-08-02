@@ -6,6 +6,15 @@ Server application for way farer
 ## Endpoint
 `api/v1/auth/signup` Method: `POST`
 
+#### Description
+This endpoint allows a user to register to the way farer application.
+Method: `POST`
+Data: `{
+    email: string - required
+    password: string - required
+    First Name: string - required
+    Last Name: string - required
+}`
 
 #COVERAGE COVERALLS REPORT
 [![Coverage Status](https://coveralls.io/repos/github/Cheza-Dzabala/wayfarer-server/badge.svg?branch=ft-sign-user-up-167592714)](https://coveralls.io/github/Cheza-Dzabala/wayfarer-server?branch=ft-sign-user-up-167592714)
