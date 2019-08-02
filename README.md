@@ -3,8 +3,15 @@ Server application for way farer
 
 
 
-# Signin API
-`api/v1/auth/signin` Method: POST
+# Sign In
+
+##### Description
+
+###### Endpoint
+`api/v1/auth/signin`
+
+- Method: POST
+- Data: { email: string - Required, password: string - Required }
 
 [![Build Status](https://travis-ci.org/Cheza-Dzabala/wayfarer-server.svg?branch=ft-sign-user-in-167569860)](https://travis-ci.org/Cheza-Dzabala/wayfarer-server)
 
