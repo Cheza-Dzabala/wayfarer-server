@@ -2,6 +2,7 @@ import express from 'express';
 
 import authRoutes from './routes/authRoutes';
 import tripRoutes from './routes/tripRoutes';
+import bookingRoutes from './routes/bookingRoutes';
 
 const app = express();
 
@@ -12,6 +13,7 @@ const version = 'v1';
 
 app.use(`/api/${version}/auth/`, authRoutes);
 app.use(`/api/${version}/trips/`, tripRoutes);
+app.use(`/api/${version}/bookings/`, bookingRoutes);
 
 // Status 404 (Error) middleware
 app.use('*', (req, res) => {

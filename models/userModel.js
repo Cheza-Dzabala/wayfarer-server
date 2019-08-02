@@ -18,6 +18,11 @@ const findUser = (email) => {
   return user;
 };
 
+const findUserById = (id) => {
+  const user = users.find(u => u.id === parseInt(id));
+  return user;
+};
+
 const signin = (email, password) => {
   const user = users.find(u => u.email === email && u.password === password);
   return user;
@@ -34,5 +39,5 @@ const signup = (data) => {
   return user;
 };
 module.exports = {
-  signin, signup, findUser,
+  signin, signup, findUser, findUserById,
 };
