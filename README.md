@@ -4,8 +4,19 @@ Server application for way farer
 
 # Sign Up
 
-## Endpoint
-`api/v1/auth/signup` Method: `POST`
+#### Description
+
+###### Endpoint
+`api/v1/auth/signup` Method: `POST
+This endpoint allows a user to register to the way farer application.
+Method: `POST`
+Data: `{
+    email: string - required
+    password: string - required
+    First Name: string - required
+    Last Name: string - required
+}`
+`
 
 
 #COVERAGE COVERALLS REPORT
@@ -84,4 +95,6 @@ Server application for way farer
 
 #### Pivotal Tracker Story
 167569860
+
+
 
