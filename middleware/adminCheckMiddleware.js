@@ -1,23 +1,18 @@
+import jwt from 'jsonwebtoken';
 import userModel from '../models/userModel';
 
-const returnError = (status, bodyStatus, message, res) => res.status(status).json({
-  status: bodyStatus,
-  data: {
-    message,
-  },
+export default ((req, res, next) => {
+  jwt.verify(req.token, 'noonewilleverguessthiskey', (err, decoded) => {
+    const { user: { id } } = decoded;
+    const user = userModel.findUserById(id);
+    if (user.is_admin === false) {
+      return res.status(403).json({
+        status: 'Unauthorized',
+        data: {
+          message: 'Only admins can access this section',
+        },
+      });
+    }
+    return next();
+  });
 });
-
-const checkAdmin = (req, res) => {
-  const id = req.header('id');
-  console.log(id);
-
-  const user = userModel.findUserById(id);
-  console.log(user);
-  if (!id || !user || user.is_admin === false) returnError(403, 'Unauthorized', 'Only admins can access this section', res);
-
-  return true;
-};
-
-module.exports = {
-  checkAdmin,
-};

@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import trips from '../data/trips.json';
 import helper from '../helpers/helpers';
 
@@ -25,7 +26,13 @@ const create = (data) => {
   return trip;
 };
 
-const all = () => trips;
+const all = () => {
+  const payload = [];
+  trips.forEach((element) => {
+    payload.push(element);
+  });
+  return payload;
+};
 
 const findTrip = (id) => {
   const trip = trips.find(t => t.id === parseInt(id));

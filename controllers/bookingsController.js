@@ -1,12 +1,9 @@
 import bookingsModel from '../models/bookingsModel';
-import adminCheckMiddleware from '../middleware/adminCheckMiddleware';
 import bookingsValidations from '../validations/bookingValidations';
-import responseHelper from '../helpers/responseHelper';
 
 const allBookings = (req, res) => {
-  adminCheckMiddleware.checkAdmin(req, res);
   const bookings = bookingsModel.allBookings();
-  res.status(200).json({
+  return res.status(200).json({
     status: 'success',
     data: bookings,
   });
@@ -23,11 +20,28 @@ const userBookings = (id, res) => {
 const createBooking = (req, res) => {
   const { body } = req;
   const { error } = bookingsValidations.validateBooking(body);
-  if (error) responseHelper.respond(400, 'Bad Request', error.details[0].message, res);
+  const { trip, user } = bookingsValidations.validateRelationships(body);
+  if (!user) {
+    return res.status(404).json({
+      status: 'User not found',
+      data: { message: 'No user found with this ID' },
+    });
+  } if (!trip) {
+    return res.status(404).json({
+      status: 'Trip not found',
+      data: { message: 'No trip found with this ID' },
+    });
+  }
+  if (error) {
+    return res.status(400).json({
+      status: 'Bad Request',
+      data: { message: error.details[0].message },
+    });
+  }
   const booking = bookingsModel.createBooking(body);
   return res.status(201).json({
     status: 'success',
-    data: { ...booking, ...{ token: 'nsslslijso' } },
+    data: { ...booking },
   });
 };
 const deleteBooking = (req, res) => {

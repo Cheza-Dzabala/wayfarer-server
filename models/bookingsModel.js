@@ -40,11 +40,16 @@ const allBookings = () => {
 };
 
 const userBookings = (id) => {
-  const userBookings = [];
-  bookings.forEach((booking) => {
-    if (booking.id === parseInt(id)) { userBookings.push(new Bookings(booking).bookingModel()); }
-  });
-  return userBookings;
+  const bookingsArray = [];
+  const user = usersModel.findUserById(id);
+  if (user) {
+    bookings.forEach((booking) => {
+      if (booking.user_id === parseInt(id)) {
+        bookingsArray.push(new Bookings(booking).bookingModel());
+      }
+    });
+  }
+  return bookingsArray;
 };
 
 const createBooking = (data) => {

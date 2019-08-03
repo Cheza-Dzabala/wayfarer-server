@@ -11,7 +11,7 @@ describe('Signin Functionality', () => {
   const endpoint = '/api/v1/auth/signin';
 
   const validAcc = {
-    email: 'dzabalamacheza@gmail.com',
+    email: 'cheza@gmail.com',
     password: 'Runfree8418_!*',
   };
 
@@ -49,9 +49,8 @@ describe('Signin Functionality', () => {
         expect(body.data).to.be.a('object', 'Data object is not returned');
         expect(body.data).to.have.property('first_name', 'Cheza', 'Data does not return the first name correctly');
         expect(body.data).to.have.property('last_name', 'Dzabala', 'Data does not return the last name correctly');
-        expect(body.data).to.have.property('email', 'dzabalamacheza@gmail.com', 'Data does not return the email correctly');
-        expect(body.data).to.have.property('password', 'Runfree8418_!*', 'Data does not return the password correctly');
-        expect(body.data).to.have.property('token', 'nFx5ch9VBq', 'Data does not return the correct token');
+        expect(body.data).to.have.property('email', 'cheza@gmail.com', 'Data does not return the email correctly');
+        expect(body.data).to.have.property('token');
 
         done();
       });
