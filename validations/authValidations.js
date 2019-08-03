@@ -9,7 +9,7 @@ const vailidateSignin = (data) => {
   return Joi.validate(data, schema);
 };
 
-const vaildateSignup = (data) => {
+const validateSignup = (data) => {
   const schema = Joi.object().keys({
     email: Joi.string().email({ minDomainSegments: 2 }).required(),
     password: Joi.string().required(),
@@ -21,5 +21,5 @@ const vaildateSignup = (data) => {
 };
 
 module.exports = {
-  vailidateSignin, vaildateSignup,
+  vailidateSignin, validateSignup,
 };

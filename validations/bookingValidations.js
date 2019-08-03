@@ -1,4 +1,6 @@
 import Joi from '@hapi/joi';
+import userModel from '../models/userModel';
+import tripsModel from '../models/tripsModel';
 
 const validateBooking = (data) => {
   const schema = Joi.object().keys({
@@ -10,7 +12,13 @@ const validateBooking = (data) => {
   return Joi.validate(data, schema);
 };
 
+const validateRelationships = (data) => {
+  const user = userModel.findUserById(data.user_id);
+  const trip = tripsModel.findTrip(data.trip_id);
+
+  return { user, trip };
+};
 
 module.exports = {
-  validateBooking,
+  validateBooking, validateRelationships,
 };

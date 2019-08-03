@@ -1,26 +1,32 @@
+import authenticationCheck from '../middleware/authenticationCheck';
 import userModel from '../models/userModel';
 import authValidations from '../validations/authValidations';
 
-const errorResponses = (error, bodyStatus, res, status) => res.status(status).json({
-  status: bodyStatus,
-  data: { message: error },
-});
 const signup = (req, res) => {
   const doesExist = userModel.findUser(req.email);
-  if (doesExist) errorResponses('Email already exists on the system', 'Forbidden', res, 403);
-  const { error } = authValidations.vaildateSignup(req);
-  if (error) errorResponses(error.details[0].message, 'Bad Request', res, 400);
-  const user = userModel.signup(req);
-  if (user) {
-    return res.status(201).json({
-      status: 'success',
-      data: { ...user, ...{ token: 'nFx5ch9VBq' } },
+  const { error } = authValidations.validateSignup(req);
+
+
+  if (doesExist) {
+    // 409 - Conflict
+    return res.status(409).json({
+      status: 'Forbidden',
+      data: {
+        message: 'Email already exists on the system',
+      },
     });
   }
-  return res.status(404).json({
-    status: 'unsuccessful',
-    data: { message: 'Unable to sign up user' },
-  });
+  if (error) {
+    return res.status(400).json({
+      status: 'Bad Request',
+      data: {
+        message: error.details[0].message,
+      },
+    });
+  }
+
+  const user = userModel.signup(req);
+  return authenticationCheck.signNewToken(user, res, 201);
 };
 
 module.exports = {
