@@ -33,7 +33,7 @@
     "bktest": "mocha --require @babel/polyfill --require @babel/register __test__/bookingsTest.spec.js",
     "tripTest": "mocha --require @babel/polyfill --require @babel/register __test__/tripTests.spec.js",
     "adminTest": "mocha --require @babel/polyfill --require @babel/register __test__/adminTests.spec.js",
-    "test": "nyc --reporter=text mocha --require @babel/polyfill --require @babel/register __test__/**/**spec**",
+    "test": "nyc --reporter=lcov mocha --require @babel/polyfill --require @babel/register __test__/**/**spec**",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "author": "Macheza Dzabala",
