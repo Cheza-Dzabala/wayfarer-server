@@ -4,6 +4,8 @@ const generateId = (array) => {
   return id;
 };
 
+const generatePassword = () => Math.random().toString(36).slice(2);
+
 module.exports = {
-  generateId,
+  generateId, generatePassword,
 };
