@@ -3,6 +3,7 @@ import morgan from 'morgan';
 import authRoutes from './routes/authRoutes';
 import tripRoutes from './routes/tripRoutes';
 import bookingRoutes from './routes/bookingRoutes';
+import adminRoutes from './routes/adminRoutes';
 
 const app = express();
 
@@ -15,6 +16,7 @@ const version = 'v1';
 app.use(`/api/${version}/auth/`, authRoutes);
 app.use(`/api/${version}/trips/`, tripRoutes);
 app.use(`/api/${version}/bookings/`, bookingRoutes);
+app.use(`/api/${version}/admins`, adminRoutes);
 
 // Status 404 (Error) middleware
 app.use('*', (req, res) => {
