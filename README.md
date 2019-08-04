@@ -34,12 +34,10 @@ New Method:
         status: 'success',
         data: [
                 {
-                    booking_id: Integer,
-                    bus_license_number: Integer,
-                    trip_date: Date,
+                    id: Integer,
+                    email: String,
                     first_name: String,
                     last_name: String,
-                    user_email: String
                 },
                 {
                     ...
@@ -50,6 +48,37 @@ New Method:
         ]
     }
 ```
+
+###### POST METHODS
+
+1. Create a new admin `api/v1/admins`
+`Request: `
+```javascript 
+    header: {'token', [token | String]}
+    body: {
+        email: String,
+        first_name: String,
+        last_name: String,
+    }
+```
+`Response: `
+
+```javascript
+data: {
+    id: Integer,
+    email: String,
+    first_name: String,
+    last_name: String
+}
+```
+### Tests
+
+###### TRAVIS CI BUILD
+[![Build Status](https://travis-ci.org/Cheza-Dzabala/wayfarer-server.svg?branch=ft-admin-creation-167688119)](https://travis-ci.org/Cheza-Dzabala/wayfarer-server)
+
+###### COVERALLS TEST COVERAGE
+[![Coverage Status](https://coveralls.io/repos/github/Cheza-Dzabala/wayfarer-server/badge.svg?branch=ft-admin-creation-167688119)](https://coveralls.io/github/Cheza-Dzabala/wayfarer-server?branch=ft-admin-creation-167688119)
+
 #### Tests Covered
 
 1. Check if endpoint exists
@@ -186,8 +215,11 @@ Users are able to create new bookings, view __their__ bookings & delete __their_
 
 ### Tests
 
+
+###### COVERALLS TEST COVERAGE
 [![Coverage Status](https://coveralls.io/repos/github/Cheza-Dzabala/wayfarer-server/badge.svg?branch=ft-bookings-167618264)](https://coveralls.io/github/Cheza-Dzabala/wayfarer-server?branch=ft-bookings-167618264)
 
+###### TRAVIS CI BUILD
 [![Build Status](https://travis-ci.org/Cheza-Dzabala/wayfarer-server.svg?branch=ft-bookings-167618264)](https://travis-ci.org/Cheza-Dzabala/wayfarer-server)
 
 
@@ -298,7 +330,7 @@ body: {}
 }
 ```
 
-#### Tests
+### Tests
 
 ###### Coveralls Test Coverage
 [![Coverage Status](https://coveralls.io/repos/github/Cheza-Dzabala/wayfarer-server/badge.svg?branch=ft-create-trips-feature-167594397)](https://coveralls.io/github/Cheza-Dzabala/wayfarer-server)
@@ -352,7 +384,7 @@ data: {
     last_name: String
 }
 ```
-#### Tests
+### Tests
 
 ###### COVERAGE COVERALLS REPORT
 
@@ -414,7 +446,7 @@ body: {
 }
 ```
 
-#### Tests
+### Tests
 
 ###### COVERALLS COVERAGE REPORT
 [![Coverage Status](https://coveralls.io/repos/github/Cheza-Dzabala/wayfarer-server/badge.svg?branch=ft-sign-user-in-167569860)](https://coveralls.io/github/Cheza-Dzabala/wayfarer-server?branch=ft-sign-user-in-167569860)
